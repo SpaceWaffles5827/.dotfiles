@@ -21,7 +21,17 @@ return require('packer').startup(function(use)
 	  end
   })
 
-  use ('nvim-treesitter/nvim-treesitter', {run = 'TSUpdate'})
+
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = 'TSUpdate',
+      requires = {
+          'nvim-treesitter/nvim-treesitter-textobjects',
+          'windwp/nvim-ts-autotag'
+      }
+  }
+
+
   use ('nvim-treesitter/playground')
   use ('https://github.com/ThePrimeagen/harpoon')
   use ('https://github.com/mbbill/undotree')
@@ -48,6 +58,8 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+
+  use 'Raimondi/delimitMate'
 
 end)
 
