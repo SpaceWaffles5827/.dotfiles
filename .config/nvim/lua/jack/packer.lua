@@ -22,20 +22,12 @@ return require('packer').startup(function(use)
   })
 
 
-  use {
-      'nvim-treesitter/nvim-treesitter',
-      run = 'TSUpdate',
-      requires = {
-          'nvim-treesitter/nvim-treesitter-textobjects',
-          'windwp/nvim-ts-autotag'
-      }
-  }
-
-
+  use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
   use ('nvim-treesitter/playground')
   use ('https://github.com/ThePrimeagen/harpoon')
   use ('https://github.com/mbbill/undotree')
   use ('tpope/vim-fugitive')
+  use("nvim-treesitter/nvim-treesitter-context");
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
