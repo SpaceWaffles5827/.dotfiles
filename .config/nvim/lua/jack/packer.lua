@@ -21,6 +21,10 @@ return require('packer').startup(function(use)
 	  end
   })
 
+  use {
+      'jose-elias-alvarez/null-ls.nvim',
+      requires = { 'nvim-lua/plenary.nvim' }
+  }
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
   use ('nvim-treesitter/playground')

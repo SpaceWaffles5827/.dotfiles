@@ -1,14 +1,12 @@
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
-
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
   'eslint',
 })
 
--- Fix Undefined global 'vim'
 lsp.configure('lua-language-server', {
     settings = {
         Lua = {
@@ -18,7 +16,6 @@ lsp.configure('lua-language-server', {
         }
     }
 })
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -65,4 +62,22 @@ lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
+})
+
+-- Prettier configuration with null-ls
+local null_ls = require('null-ls')
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.prettier.with({
+            extra_args = { "--single-quote", "--jsx-single-quote" },
+        }),
+    },
+})
+
+-- Auto-format files on save using null-ls sources
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.tsx",
+    callback = function()
+        vim.lsp.buf.format({ async = false })
+    end,
 })
