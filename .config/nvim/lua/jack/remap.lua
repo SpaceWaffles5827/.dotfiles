@@ -5,8 +5,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-k>", "<C-d>zz") -- half page jumping (Need to remap)
-vim.keymap.set("n", "<C-j>", "<C-u>zz") -- half page jumping
+vim.keymap.set("n", "<C-k>", "<C-u>zz") -- half page jumping
+vim.keymap.set("n", "<C-j>", "<C-d>zz") -- half page jumping (Need to remap)
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
