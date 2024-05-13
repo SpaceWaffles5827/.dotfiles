@@ -66,18 +66,29 @@ vim.diagnostic.config({
 
 -- Prettier configuration with null-ls
 local null_ls = require('null-ls')
+local b = null_ls.builtins
+
+local prettier_eslint = {
+    method = b.formatting.prettier_eslint.method,
+    filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "json", "html" },
+    generator = null_ls.generator({
+        command = "prettier-eslint",
+        args = { "--stdin", "--stdin-filepath", "$FILENAME" },
+        to_stdin = true,
+    }),
+}
+
 null_ls.setup({
     sources = {
-        null_ls.builtins.formatting.prettier.with({
-            extra_args = { "--single-quote", "--jsx-single-quote" },
-        }),
+        prettier_eslint,
     },
 })
 
--- Auto-format files on save using null-ls sources
+-- Auto-format specific files on save using null-ls sources
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.tsx",
+    pattern = { "*.js", "*.ts", "*.tsx", "*.jsx", "*.css", "*.json", "*.html" },
     callback = function()
         vim.lsp.buf.format({ async = false })
     end,
 })
+
