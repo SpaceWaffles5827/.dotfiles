@@ -64,5 +64,10 @@ return require('packer').startup(function(use)
         require('gitsigns').setup()
       end
   }
+
+  use {
+      "eoh-bse/minintro.nvim",
+      config = function() require("jack.minintro").setup({ color = "#98c379" }) end
+  }
 end)
 
