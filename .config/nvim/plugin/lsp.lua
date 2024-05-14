@@ -27,7 +27,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
+cmp_mappings['<S-Tab'] = nil
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
@@ -64,18 +64,25 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
--- Prettier configuration with null-ls
+-- Prettier and ESLint configuration with null-ls
 local null_ls = require('null-ls')
 local b = null_ls.builtins
 
 local prettier = b.formatting.prettier.with({
-    extra_args = { "--single-quote", "--jsx-single-quote" },  -- Add other Prettier CLI options here if needed
+    extra_args = { "--single-quote", "--jsx-single-quote" },
     filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "json", "html" },
+})
+
+local eslint = b.diagnostics.eslint.with({
+    condition = function(utils)
+        return utils.root_has_file({ '.eslintrc.js', '.eslintrc.json', '.eslintrc.yml' })
+    end,
 })
 
 null_ls.setup({
     sources = {
         prettier,
+        eslint,
     },
 })
 
