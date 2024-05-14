@@ -68,19 +68,14 @@ vim.diagnostic.config({
 local null_ls = require('null-ls')
 local b = null_ls.builtins
 
-local prettier_eslint = {
-    method = b.formatting.prettier_eslint.method,
+local prettier = b.formatting.prettier.with({
+    extra_args = { "--single-quote", "--jsx-single-quote" },  -- Add other Prettier CLI options here if needed
     filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "json", "html" },
-    generator = null_ls.generator({
-        command = "prettier-eslint",
-        args = { "--stdin", "--stdin-filepath", "$FILENAME" },
-        to_stdin = true,
-    }),
-}
+})
 
 null_ls.setup({
     sources = {
-        prettier_eslint,
+        prettier,
     },
 })
 
