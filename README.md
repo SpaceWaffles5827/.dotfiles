@@ -11,3 +11,5 @@ Comment out all requre() in init.lua except for require packer
 Run PackerInstall PackerSync
 
 Finally run stow . in the root of the project
+
+sudo apt install fzf for ctr + t searching
