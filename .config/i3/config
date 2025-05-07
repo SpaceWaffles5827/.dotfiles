@@ -211,3 +211,15 @@ exec_always picom
 
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings &
 
+# Startup applications
+# assign apps to workspaces
+assign [class="Alacritty"]     $ws1
+assign [class="discord"]       $ws2
+assign [class="Google-chrome"] $ws3
+assign [class="Spotify"]       $ws4
+
+# launch them on startup
+exec --no-startup-id alacritty
+exec --no-startup-id discord
+exec --no-startup-id google-chrome
+exec --no-startup-id spotify
