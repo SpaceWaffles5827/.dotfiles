@@ -1,2 +1,6 @@
 [window]
 opacity = 0.85
+
+[terminal.shell]
+program = "zsh"
+args = ["-lc", "exec tmux attach || exec tmux new-session"]
