@@ -116,3 +116,4 @@ export NVM_DIR="$HOME/.nvm"
 
 bindkey -s ^t "tmux-sessionizer\n"
 PATH="$PATH":"$HOME/.local/bin/"
+export PATH="$HOME/.cargo/bin:$PATH"
